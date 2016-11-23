@@ -71,7 +71,7 @@ int main(int argc, char *argv[]){
 	mykey.inode_id=*(int64_t *)buffer1.getValue();///获取当前fileids
 	sprintf(mypath,"/testfs/%d/yyy/zzzz/testnode",1);///输入字符串
 	len=strlen(mypath);
-	mykey.hash_id=140729466897320; ///根据路径得到的hash值不同，因此buffer中查找不到数据
+	mykey.hash_id=murmur64(mypath, len, 123); ///根据路径得到的hash值不同，因此buffer中查找不到数据
 	printf ("mypath: %s(%d) my inode id:%ld, myhash_id:%ld\n",mypath,len,mykey.inode_id, mykey.hash_id);
 
 	std::string rmkey=mykey.ToString();
